@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Learnow.Common\Learnow.Common.csproj" />
+    <ProjectReference Include="..\Learnow.Contract\Learnow.Contract.csproj" />
+    <ProjectReference Include="..\Learnow.Domain\Learnow.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

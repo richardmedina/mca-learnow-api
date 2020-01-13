@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mca-learnow-api", "mca-learnow-api\mca-learnow-api.csproj", "{B5A1A6A9-BB9B-4F82-9508-72E17E4FAF65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contract", "Contract", "{8AED6B8B-766F-43D0-A184-22CC51C894EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{6F4C31AE-5FA9-49CB-8626-E29BA9614811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learnow.Contract", "Learnow.Contract\Learnow.Contract.csproj", "{FAC4B0F2-2A83-41CC-8384-79DFC1AE1E45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learnow.Domain", "Learnow.Domain\Learnow.Domain.csproj", "{FB25E933-0841-46F6-806B-367A45ED489D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8480E351-EEBC-4787-9822-A148A6EB9C7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learnow.Common", "Learnow.Common\Learnow.Common.csproj", "{FB14F1B3-F885-46FE-B8A6-F5BC8D5D2FC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9EB90DC2-4938-4EDE-8F86-5B77096F1338}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learnow.Services", "Learnow.Services\Learnow.Services.csproj", "{B5C03408-61EF-45E4-A058-D34AE17EE55E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5A1A6A9-BB9B-4F82-9508-72E17E4FAF65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A1A6A9-BB9B-4F82-9508-72E17E4FAF65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A1A6A9-BB9B-4F82-9508-72E17E4FAF65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A1A6A9-BB9B-4F82-9508-72E17E4FAF65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC4B0F2-2A83-41CC-8384-79DFC1AE1E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC4B0F2-2A83-41CC-8384-79DFC1AE1E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC4B0F2-2A83-41CC-8384-79DFC1AE1E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC4B0F2-2A83-41CC-8384-79DFC1AE1E45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB25E933-0841-46F6-806B-367A45ED489D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB25E933-0841-46F6-806B-367A45ED489D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB25E933-0841-46F6-806B-367A45ED489D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB25E933-0841-46F6-806B-367A45ED489D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB14F1B3-F885-46FE-B8A6-F5BC8D5D2FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB14F1B3-F885-46FE-B8A6-F5BC8D5D2FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB14F1B3-F885-46FE-B8A6-F5BC8D5D2FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB14F1B3-F885-46FE-B8A6-F5BC8D5D2FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5C03408-61EF-45E4-A058-D34AE17EE55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5C03408-61EF-45E4-A058-D34AE17EE55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5C03408-61EF-45E4-A058-D34AE17EE55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5C03408-61EF-45E4-A058-D34AE17EE55E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FAC4B0F2-2A83-41CC-8384-79DFC1AE1E45} = {8AED6B8B-766F-43D0-A184-22CC51C894EF}
+		{FB25E933-0841-46F6-806B-367A45ED489D} = {6F4C31AE-5FA9-49CB-8626-E29BA9614811}
+		{FB14F1B3-F885-46FE-B8A6-F5BC8D5D2FC3} = {8480E351-EEBC-4787-9822-A148A6EB9C7F}
+		{B5C03408-61EF-45E4-A058-D34AE17EE55E} = {9EB90DC2-4938-4EDE-8F86-5B77096F1338}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00261BA5-4561-47DC-9A22-984C45F378AC}
+	EndGlobalSection
+EndGlobal
