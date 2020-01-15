@@ -31,15 +31,52 @@ namespace mca_learnow_api.Controllers
             var dto = _mapper.Map<CreateUserDto>(createUserRequest);
             var result = await _userService.Create(dto);
 
-            return Created($"/users/{result.Id}","hola");
+            return result != null
+                ? Created($"/users/{result.Id}", _mapper.Map<UserModel>(result)) as IActionResult
+                : BadRequest();
         }
 
         [HttpGet]
-        public async Task<IEnumerable<UserModel>> Read ()
+        public async Task<IActionResult> Read ()
         {
-            var result = await _userService.GetAll();
+            var result = await _userService.Read();
 
-            return _mapper.Map<IEnumerable<UserModel>> (result);
+            return Ok (_mapper.Map<IEnumerable<UserModel>> (result));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ReadOne(long id)
+        {
+            var result = await _userService.Read(id);
+
+            if (result != null)
+            {
+                return Ok(_mapper.Map<UserModel>(result));
+            }
+
+            return NotFound();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateUserRequest request)
+        {
+            var dto = _mapper.Map<UpdateUserDto>(request);
+
+            var result = await _userService.Update(dto);
+
+            return result != null
+                ? Ok(_mapper.Map<UserModel>(result)) as IActionResult
+                : BadRequest();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete (long id)
+        {
+            var result = await _userService.Delete(id);
+
+            return result
+                ? Ok() as IActionResult
+                : NotFound();
         }
     }
 }

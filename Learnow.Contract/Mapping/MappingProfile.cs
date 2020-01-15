@@ -18,6 +18,7 @@ namespace Learnow.Contract.Mapping
         private void CreateUserMaps ()
         {
             CreateMap<CreateUserRequest, CreateUserDto>();
+            CreateMap<UpdateUserRequest, UpdateUserDto>();
             CreateMap<UserDto, UserModel>();
             CreateMap<UserEntity, UserDto>();
         }

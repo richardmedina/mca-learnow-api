@@ -9,6 +9,9 @@ namespace Learnow.Common.Services
     public interface IUserService
     {
         Task<UserDto> Create(CreateUserDto createUserDto);
-        Task<IEnumerable<UserDto>> GetAll();
+        Task<IEnumerable<UserDto>> Read();
+        Task<UserDto> Read(long id);
+        Task<UserDto> Update(UpdateUserDto updateUserDto);
+        Task<bool> Delete(long id);
     }
 }

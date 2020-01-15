@@ -29,14 +29,58 @@ namespace Learnow.Services.User
                 Password = createUserDto.Password
             });
 
-            await Context.SaveChangesAsync();
+            var records = await Context.SaveChangesAsync();
 
-            return _mapper.Map<UserDto>(createdUser.Entity);
+
+            return records > 0
+                ? _mapper.Map<UserDto>(createdUser.Entity)
+                : null;
         }
 
-        public async Task<IEnumerable<UserDto>> GetAll()
+        public async Task<IEnumerable<UserDto>> Read()
         {
             return _mapper.Map<IEnumerable<UserDto>>(await Context.Users.ToListAsync());
         }
+
+        public async Task<UserDto> Read (long id)
+        {
+            return _mapper.Map<UserDto>(await Context.Users.FirstOrDefaultAsync(u => u.Id == id));
+        }
+
+        public async Task<UserDto> Update(UpdateUserDto updateUserDto)
+        {
+            var succeed = false;
+            var user = await Context.Users.FirstOrDefaultAsync(u => u.Id == updateUserDto.Id);
+            if(user != null)
+            {
+                user.Username = string.IsNullOrWhiteSpace(updateUserDto.Username)
+                    ? user.Username
+                    : updateUserDto.Username;
+
+                user.Password = string.IsNullOrWhiteSpace(updateUserDto.Password)
+                    ? user.Password
+                    : updateUserDto.Password;
+
+                succeed = await Context.SaveChangesAsync() > 0;
+            }
+
+            return succeed
+                ? _mapper.Map<UserDto>(user)
+                : null;
+        }
+
+        public async Task<bool> Delete (long id)
+        {
+            var user = await Context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user != null)
+            {
+                Context.Users.Remove(user);
+                return await Context.SaveChangesAsync() > 0;
+            }
+
+            return false;
+        }
+
     }
 }
