@@ -47,7 +47,7 @@ namespace mca_learnow_api.Controllers
             return Ok (_mapper.Map<IEnumerable<UserModel>> (result));
         }
         
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:long}")]
         public async Task<IActionResult> ReadOne(long id)
         {
             var result = await _userService.Read(id);
@@ -62,18 +62,17 @@ namespace mca_learnow_api.Controllers
             return NotFound();
         }
 
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> ReadByUsername([FromQuery] string username)
-        {
-            var result = await _userService.ReadByUsername(username);
-            if (result != null)
-            {
-                return Ok(_mapper.Map<UserModel>(result));
-            }
+        //[HttpGet]
+        //public async Task<IActionResult> ReadByUsername([FromQuery] string username)
+        //{
+        //    var result = await _userService.ReadByUsername(username);
+        //    if (result != null)
+        //    {
+        //        return Ok(_mapper.Map<UserModel>(result));
+        //    }
 
-            return NotFound();
-        }
+        //    return NotFound();
+        //}
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, [FromBody] UpdateUserRequest request)
