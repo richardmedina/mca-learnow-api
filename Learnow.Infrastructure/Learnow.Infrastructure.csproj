@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Learnow.Common\Learnow.Common.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Learnow.Contract\Learnow.Contract.csproj" />
-    <ProjectReference Include="..\Learnow.Domain\Learnow.Domain.csproj" />
-    <ProjectReference Include="..\Learnow.Infrastructure\Learnow.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

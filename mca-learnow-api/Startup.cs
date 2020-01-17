@@ -15,6 +15,7 @@ using Learnow.Domain;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Learnow.Contract.Mapping;
+using Learnow.Infrastructure;
 
 namespace mca_learnow_api
 {
@@ -32,7 +33,19 @@ namespace mca_learnow_api
         {
             //services.AddDbContext<LearnowDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnowDb")));
             services.AddDbContext<LearnowDbContext>(opt => opt.UseInMemoryDatabase("LearnDb"));
+
+            services.AddJwt(opt => {
+                opt.ExpiryMinutes = 5;
+                opt.Issuer = "http://localhost";
+                opt.SecretKey = "xfFUjAzHpUQaaxrDFJYQKzHtHbNebbTNZcadHRJcqCvSqQApvSDX";
+            });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultChallengeScheme = "";
+            });
             services.RegisterLearnowServices();
+            
 
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllers();

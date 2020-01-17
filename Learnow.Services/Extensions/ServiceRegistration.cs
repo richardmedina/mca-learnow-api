@@ -1,4 +1,5 @@
 ﻿using Learnow.Common.Services;
+using Learnow.Services.Security;
 using Learnow.Services.User;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -12,6 +13,7 @@ namespace Learnow.Services.Extensions
         public static void RegisterLearnowServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

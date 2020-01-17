@@ -13,5 +13,6 @@ namespace Learnow.Common.Services
         Task<UserDto> Read(long id);
         Task<UserDto> Update(UpdateUserDto updateUserDto);
         Task<bool> Delete(long id);
+        Task<UserDto> ReadByUsername(string username);
     }
 }

@@ -47,6 +47,11 @@ namespace Learnow.Services.User
             return _mapper.Map<UserDto>(await Context.Users.FirstOrDefaultAsync(u => u.Id == id));
         }
 
+        public async Task<UserDto> ReadByUsername(string username)
+        {
+            return _mapper.Map<UserDto>(await Context.Users.FirstOrDefaultAsync(u => u.Username == username));
+        }
+
         public async Task<UserDto> Update(UpdateUserDto updateUserDto)
         {
             var succeed = false;
@@ -81,6 +86,5 @@ namespace Learnow.Services.User
 
             return false;
         }
-
     }
 }
