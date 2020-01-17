@@ -57,11 +57,11 @@ namespace mca_learnow_api.Controllers
             return NotFound();
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateUserRequest request)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(long id, [FromBody] UpdateUserRequest request)
         {
             var dto = _mapper.Map<UpdateUserDto>(request);
-
+            dto.Id = id;
             var result = await _userService.Update(dto);
 
             return result != null
