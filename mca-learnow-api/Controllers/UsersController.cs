@@ -7,8 +7,10 @@ using Learnow.Common.Services;
 using Learnow.Contract.Dto.Users;
 using Learnow.Contract.Models.Users;
 using Learnow.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace mca_learnow_api.Controllers
 {
@@ -35,20 +37,36 @@ namespace mca_learnow_api.Controllers
                 ? Created($"/users/{result.Id}", _mapper.Map<UserModel>(result)) as IActionResult
                 : BadRequest();
         }
-
+        
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Read ()
         {
             var result = await _userService.Read();
 
             return Ok (_mapper.Map<IEnumerable<UserModel>> (result));
         }
-
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> ReadOne(long id)
         {
             var result = await _userService.Read(id);
+            var currentUserName = JsonConvert.SerializeObject(User.Claims);
+            Response.Headers.Add("Currrent Claims", currentUserName);
 
+            if (result != null)
+            {
+                return Ok(_mapper.Map<UserModel>(result));
+            }
+
+            return NotFound();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> ReadByUsername([FromQuery] string username)
+        {
+            var result = await _userService.ReadByUsername(username);
             if (result != null)
             {
                 return Ok(_mapper.Map<UserModel>(result));
