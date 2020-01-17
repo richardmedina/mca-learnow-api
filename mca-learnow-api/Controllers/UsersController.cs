@@ -47,7 +47,7 @@ namespace mca_learnow_api.Controllers
             return Ok (_mapper.Map<IEnumerable<UserModel>> (result));
         }
         
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> ReadOne(long id)
         {
             var result = await _userService.Read(id);
