@@ -44,6 +44,9 @@ namespace mca_learnow_api.Controllers
         {
             var result = await _userService.ReadAsync();
 
+            var currentUserName = JsonConvert.SerializeObject(User.Claims);
+            Console.WriteLine($"Current Clamims: {currentUserName}");
+
             return Ok (_mapper.Map<IEnumerable<UserModel>> (result));
         }
         
@@ -51,8 +54,6 @@ namespace mca_learnow_api.Controllers
         public async Task<IActionResult> ReadOne(long id)
         {
             var result = await _userService.ReadAsync(id);
-            var currentUserName = JsonConvert.SerializeObject(User.Claims);
-            Response.Headers.Add("Currrent Claims", currentUserName);
 
             if (result != null)
             {
