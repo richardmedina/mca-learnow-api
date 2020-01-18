@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Learnow.Contract.Mapping;
 using Learnow.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace mca_learnow_api
 {
@@ -49,6 +50,14 @@ namespace mca_learnow_api
 
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllers();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +71,8 @@ namespace mca_learnow_api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

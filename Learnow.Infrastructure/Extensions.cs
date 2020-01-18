@@ -21,11 +21,7 @@ namespace Learnow.Infrastructure
 
             services.AddSingleton<IJwtHandler, JwtHandler>(imp => new JwtHandler(options));
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            services.AddAuthentication()
                 .AddJwtBearer(cfg =>
                 {
                     cfg.RequireHttpsMetadata = false;
@@ -37,6 +33,8 @@ namespace Learnow.Infrastructure
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SecretKey))
                     };
                 });
+
+            
         }
     }
 }
