@@ -20,11 +20,13 @@ namespace mca_learnow_api.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
+        private readonly INotificationService _notificationService;
 
-        public UsersController(IMapper mapper, IUserService userService)
+        public UsersController(IMapper mapper, IUserService userService, INotificationService notificationService)
         {
             _mapper = mapper;
             _userService = userService;
+            _notificationService = notificationService;
         }
 
         [HttpPost]
@@ -32,6 +34,11 @@ namespace mca_learnow_api.Controllers
         {
             var dto = _mapper.Map<CreateUserDto>(createUserRequest);
             var result = await _userService.CreateAsync(dto);
+
+            if (result != null)
+            {
+                await _notificationService.SendUserCreatedNotificationAsync(dto.Username, dto.Username);
+            }
 
             return result != null
                 ? Created($"/users/{result.Id}", _mapper.Map<UserModel>(result)) as IActionResult
@@ -43,9 +50,6 @@ namespace mca_learnow_api.Controllers
         public async Task<IActionResult> Read ()
         {
             var result = await _userService.ReadAsync();
-
-            var currentUserName = JsonConvert.SerializeObject(User.Claims);
-            Console.WriteLine($"Current Clamims: {currentUserName}");
 
             return Ok (_mapper.Map<IEnumerable<UserModel>> (result));
         }

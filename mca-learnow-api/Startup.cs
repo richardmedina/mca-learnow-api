@@ -41,6 +41,13 @@ namespace mca_learnow_api
                 opt.SecretKey = "xfFUjAzHpUQaaxrDFJYQKzHtHbNebbTNZcadHRJcqCvSqQApvSDX";
             });
 
+            services.AddSendGrid(options => {
+                options.IsEnabled = false;
+                options.Apikey = "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";
+                options.SenderEmail = "staff@mycleverapp.com";
+                options.SenderName = "MyCleverApp No-Reply";
+            });
+
             services.AddAuthentication(options =>
             {
                 options.DefaultChallengeScheme = "";

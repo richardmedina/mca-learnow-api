@@ -1,4 +1,5 @@
 ﻿using Learnow.Infrastructure.Jwt;
+using Learnow.Infrastructure.SendGrid;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,8 +34,13 @@ namespace Learnow.Infrastructure
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SecretKey))
                     };
                 });
+        }
+        public static void AddSendGrid(this IServiceCollection services, Action<SendGridAdapterOptions> optionsBuilder = null)
+        {
+            var options = new SendGridAdapterOptions();
+            optionsBuilder(options);
 
-            
+            services.AddSingleton<ISendGridAdapter, SendGridAdapter>(imp => new SendGridAdapter(options));
         }
     }
 }

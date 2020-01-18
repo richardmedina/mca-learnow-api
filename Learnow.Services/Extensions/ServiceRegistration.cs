@@ -1,4 +1,5 @@
 ﻿using Learnow.Common.Services;
+using Learnow.Services.Notification;
 using Learnow.Services.Security;
 using Learnow.Services.User;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ namespace Learnow.Services.Extensions
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<INotificationService, NotificationService>();
         }
     }
 }
