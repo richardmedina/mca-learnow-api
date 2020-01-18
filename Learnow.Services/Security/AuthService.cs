@@ -17,9 +17,9 @@ namespace Learnow.Services.Security
             _jwtHandler = jwtHandler;
             _userService = userService;
         }
-        public async Task<AuthTokenDto> Authenticate(string username, string password)
+        public async Task<AuthTokenDto> AuthenticateAsync(string username, string password)
         {
-            var user = await _userService.ReadByUsername(username);
+            var user = await _userService.ReadByUsernameAsync(username);
 
             if (user != null && username == user.Username && password == user.Password)
             {

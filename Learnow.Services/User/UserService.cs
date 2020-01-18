@@ -21,7 +21,7 @@ namespace Learnow.Services.User
             _mapper = mapper;
         }
 
-        public async Task<UserDto> Create(CreateUserDto createUserDto)
+        public async Task<UserDto> CreateAsync(CreateUserDto createUserDto)
         {
             var createdUser = await Context.Users.AddAsync(new UserEntity
             {
@@ -37,22 +37,22 @@ namespace Learnow.Services.User
                 : null;
         }
 
-        public async Task<IEnumerable<UserDto>> Read()
+        public async Task<IEnumerable<UserDto>> ReadAsync()
         {
             return _mapper.Map<IEnumerable<UserDto>>(await Context.Users.ToListAsync());
         }
 
-        public async Task<UserDto> Read (long id)
+        public async Task<UserDto> ReadAsync (long id)
         {
             return _mapper.Map<UserDto>(await Context.Users.FirstOrDefaultAsync(u => u.Id == id));
         }
 
-        public async Task<UserDto> ReadByUsername(string username)
+        public async Task<UserDto> ReadByUsernameAsync(string username)
         {
             return _mapper.Map<UserDto>(await Context.Users.FirstOrDefaultAsync(u => u.Username == username));
         }
 
-        public async Task<UserDto> Update(UpdateUserDto updateUserDto)
+        public async Task<UserDto> UpdateAsync(UpdateUserDto updateUserDto)
         {
             var succeed = false;
             var user = await Context.Users.FirstOrDefaultAsync(u => u.Id == updateUserDto.Id);
@@ -74,7 +74,7 @@ namespace Learnow.Services.User
                 : null;
         }
 
-        public async Task<bool> Delete (long id)
+        public async Task<bool> DeleteAsync (long id)
         {
             var user = await Context.Users.FirstOrDefaultAsync(u => u.Id == id);
 

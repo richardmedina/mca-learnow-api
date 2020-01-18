@@ -24,7 +24,7 @@ namespace mca_learnow_api.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest request)
         {
-            var result = await _authService.Authenticate(request.Username, request.Password);
+            var result = await _authService.AuthenticateAsync(request.Username, request.Password);
 
             return result != null
                 ? Ok(_mapper.Map<AuthenticateResponse>(result)) as IActionResult

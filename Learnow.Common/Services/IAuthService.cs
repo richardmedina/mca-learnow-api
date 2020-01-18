@@ -8,6 +8,6 @@ namespace Learnow.Common.Services
 {
     public interface IAuthService
     {
-        Task<AuthTokenDto> Authenticate(string username, string password);
+        Task<AuthTokenDto> AuthenticateAsync(string username, string password);
     }
 }

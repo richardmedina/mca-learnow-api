@@ -8,11 +8,11 @@ namespace Learnow.Common.Services
 {
     public interface IUserService
     {
-        Task<UserDto> Create(CreateUserDto createUserDto);
-        Task<IEnumerable<UserDto>> Read();
-        Task<UserDto> Read(long id);
-        Task<UserDto> Update(UpdateUserDto updateUserDto);
-        Task<bool> Delete(long id);
-        Task<UserDto> ReadByUsername(string username);
+        Task<UserDto> CreateAsync(CreateUserDto createUserDto);
+        Task<IEnumerable<UserDto>> ReadAsync();
+        Task<UserDto> ReadAsync(long id);
+        Task<UserDto> UpdateAsync(UpdateUserDto updateUserDto);
+        Task<bool> DeleteAsync(long id);
+        Task<UserDto> ReadByUsernameAsync(string username);
     }
 }

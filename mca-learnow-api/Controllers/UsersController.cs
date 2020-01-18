@@ -31,7 +31,7 @@ namespace mca_learnow_api.Controllers
         public async Task<IActionResult> Create([FromBody] CreateUserRequest createUserRequest)
         {
             var dto = _mapper.Map<CreateUserDto>(createUserRequest);
-            var result = await _userService.Create(dto);
+            var result = await _userService.CreateAsync(dto);
 
             return result != null
                 ? Created($"/users/{result.Id}", _mapper.Map<UserModel>(result)) as IActionResult
@@ -42,7 +42,7 @@ namespace mca_learnow_api.Controllers
         [Authorize]
         public async Task<IActionResult> Read ()
         {
-            var result = await _userService.Read();
+            var result = await _userService.ReadAsync();
 
             return Ok (_mapper.Map<IEnumerable<UserModel>> (result));
         }
@@ -50,7 +50,7 @@ namespace mca_learnow_api.Controllers
         [HttpGet("{id:long}")]
         public async Task<IActionResult> ReadOne(long id)
         {
-            var result = await _userService.Read(id);
+            var result = await _userService.ReadAsync(id);
             var currentUserName = JsonConvert.SerializeObject(User.Claims);
             Response.Headers.Add("Currrent Claims", currentUserName);
 
@@ -79,7 +79,7 @@ namespace mca_learnow_api.Controllers
         {
             var dto = _mapper.Map<UpdateUserDto>(request);
             dto.Id = id;
-            var result = await _userService.Update(dto);
+            var result = await _userService.UpdateAsync(dto);
 
             return result != null
                 ? Ok(_mapper.Map<UserModel>(result)) as IActionResult
@@ -89,7 +89,7 @@ namespace mca_learnow_api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete (long id)
         {
-            var result = await _userService.Delete(id);
+            var result = await _userService.DeleteAsync(id);
 
             return result
                 ? Ok() as IActionResult
