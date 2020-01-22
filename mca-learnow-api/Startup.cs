@@ -71,7 +71,10 @@ namespace mca_learnow_api
             {
                 options.AddPolicy(CorsPolicyName, builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000");
+                    builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
                 });
             });
         }
