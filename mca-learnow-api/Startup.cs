@@ -22,12 +22,13 @@ namespace mca_learnow_api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+        public string CorsPolicyName = "CorsPolicyName";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -65,6 +66,14 @@ namespace mca_learnow_api
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicyName, builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,6 +91,8 @@ namespace mca_learnow_api
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseCors(CorsPolicyName);
 
             app.UseEndpoints(endpoints =>
             {
