@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Learnow.Common.Handlers
 {
-    public interface ICommandHandler<in T> : IHandler<T> where T : ICommand
+    public interface ICommandHandler<in TCommand> : IHandler<TCommand> where TCommand : ICommand
     {
     }
 }
