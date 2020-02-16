@@ -13,6 +13,7 @@ namespace Learnow.Domain
         public DbSet<UserEntity> Users { get; set; }
         public LearnowDbContext(DbContextOptions options) : base (options)
         {
+            Database.Migrate();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
