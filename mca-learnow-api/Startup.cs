@@ -34,7 +34,7 @@ namespace mca_learnow_api
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<LearnowDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnowDb")));
-            services.AddDbContext<LearnowDbContext>(opt => opt.UseInMemoryDatabase("LearnDb"));
+            services.AddDbContext<LearnowDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnowDb")));
 
             services.AddJwt(opt => {
                 opt.ExpiryMinutes = 5;
