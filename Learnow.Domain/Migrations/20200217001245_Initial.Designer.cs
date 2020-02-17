@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Learnow.Domain.Migrations
 {
     [DbContext(typeof(LearnowDbContext))]
-    [Migration("20200216225916_Initial")]
+    [Migration("20200217001245_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
