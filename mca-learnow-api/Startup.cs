@@ -17,6 +17,7 @@ using AutoMapper;
 using Learnow.Contract.Mapping;
 using Learnow.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Learnow.Infrastructure.EntityFramework;
 
 namespace mca_learnow_api
 {
@@ -33,8 +34,9 @@ namespace mca_learnow_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var valor = Configuration.GetValue<string>("MySection:MyValue1");
             //services.AddDbContext<LearnowDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnowDb")));
-            services.AddDbContext<LearnowDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnowDb")));
+            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LearnowDb")));
 
             services.AddJwt(opt => {
                 opt.ExpiryMinutes = 5;
